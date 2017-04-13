@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="xyz">
+
+<head>
+    <title>Data Views</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="container" align="center">
+        <style>
+        .demo-card-wide.mdl-card {
+            width: 80%;
+        }
+        
+        .demo-card-wide > .mdl-card__title {
+            color: #fff;
+            height: 500px;
+            background: url('beckham.jpg') center / cover;
+        }
+        
+        .demo-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+        </style>
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h1 class="mdl-card__title-text" style="color: white;"><b>WELCOME TO MY APP</b></h1>
+            </div>
+            <div class="mdl-card__supporting-text" style="color: black;">
+                Hi. Welcome to my application.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="cards.html" style="background-color: rgb(101, 101, 101);">
+                     AVAILABLE CARDS
+                </a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="infoform.html" style="background-color: rgb(101, 101, 101);">
+                     REGISTER
+                </a>
+            </div>
+            <div class="mdl-card__menu">
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">share</i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    <li class="mdl-menu__item">Facebook</li>
+                    <li class="mdl-menu__item">WhatsApp</li>
+                    <li disabled class="mdl-menu__item">Hike</li>
+                    <li class="mdl-menu__item">E-mail</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <strong>Copyright Safe &copy</strong>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script>
+    var app = angular.module('xyz', ['ngRoute']);
+
+    app.config = (['$routeProvider', 'locatonProvider', function($routeProvider, $locatonProvider) {
+
+        $routeProvider.when('/Available Cards', {
+            templateUrl: 'cards.html'
+        });
+        $routeProvider.when('/Info Form', {
+            templateUrl: 'infoform.html'
+        });
+        $locatonProvider.html5mode(true);
+    }]);
+
+
+    app.run(['$rootScope', function(r) {
+
+    }]);
+
+    app.controller('A', ['$scope', function(s) {
+
+    }]);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="xyz">
+
+<head>
+    <title>INFO FORM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="HttpController">
+        <div class="container">
+            <div class="mdl-layout mdl-js-layout">
+                <header class="mdl-layout__header" style="width: 85%; background-color: rgb(101, 101, 101);">
+                    <div class="mdl-layout__header-row">
+                        <span class="mdl-layout-title">FILL THE FORM</span>
+                    </div>
+                </header>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <form ng-submit="submit()">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" ng-model="o.name" pattern="^[a-zA-Z\s]+$" required="">
+                            <label class="mdl-textfield__label" for="Firstname">Full Name</label>
+                            <span class="mdl-textfield__error">Input is not a name!</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" ng-model="o.locality" pattern="^[a-zA-Z\s]+$" required="">
+                            <label class="mdl-textfield__label" for="city">City</label>
+                            <span class="mdl-textfield__error">Incorrect Input!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="o.mobileNumber" required="">
+                            <label class="mdl-textfield__label" for="o.phone">Contact Number</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="email" ng-model="o.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required="">
+                            <label class="mdl-textfield__label" for="o.email">Email-id</label>
+                            <span class="mdl-textfield__error">Incorrect Email-id Format!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" type="text" rows= "2" ng-model="o.question" required=""></textarea>
+                            <label class="mdl-textfield__label" for="o.question">Your life challenging question</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: rgb(101, 101, 101);">
+                    SUBMIT
+                </button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: red;">
+                    RESET
+                </button>
+                <br>
+                <span>
+                	<strong>Status: {{data1.message}}</strong>
+                </span>
+            </form>
+            <div class="footer">
+                Copyright Safe &copy
+            </div>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script>
+    var app = angular.module('xyz', []);
+    app.controller('HttpController', ['$scope', '$http', function($scope, $http) {
+            $scope.submit = function() {
+            $http({
+                url: 'https://zenways-register.herokuapp.com/api/register',
+                method:'POST',
+                data: $scope.o
+            }).then(function(response) {
+                $scope.data1 = response.data;
+                console.log($scope.data1)
+            }, function() {});
+        }
+    }]);
+    </script>
+</body>
+
+</html>
